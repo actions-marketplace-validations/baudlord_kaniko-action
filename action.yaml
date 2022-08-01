@@ -1,4 +1,4 @@
-name: kaniko-action
+name: baudlord-kaniko-action
 description: Kaniko in GitHub Actions
 
 inputs:
