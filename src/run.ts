@@ -27,6 +27,10 @@ type Outputs = {
 }
 
 export const run = async (inputs: Inputs): Promise<Outputs> => {
+  await withTime('Mount??', () => exec.exec('mount', []))
+  await withTime('Home??', () => exec.exec('ls', ['-la', '/home/runner']))
+  await withTime('Docker??', () => exec.exec('ls', ['-la', '/home/runner/.docker']))
+  await withTime('Token??', () => exec.exec('cat', ['/home/runner/.docker/config.json']))
   await withTime('Pulled', () => exec.exec('docker', ['pull', '-q', inputs.executor]))
 
   const outputDir = await fs.mkdtemp(`${os.tmpdir()}/kaniko-action-`)
